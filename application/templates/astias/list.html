@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<table>
+		<tr>
+			<th>Otsikko</th>
+			<th>Kuvaus</th>
+		</tr>
+		{% for astia in astias %}
+		<tr>
+			<td>{{ astia.title }}</td>
+			<td>{{ astia.description }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+	{% include "astias/form.html" %}
+{% endblock %}
