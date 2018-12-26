@@ -8,8 +8,8 @@
 		</tr>
 		{% for astia in astias %}
 		<tr>
-			<td>{{ astia.title }}</td>
-			<td>{{ astia.description }}</td>
+			<td><a href="{{ url_for('astias_show', astia_id=astia.id) }}">{{ astia.title }}</a></td>
+			<td>{{ astia.description | markdown }}</td>
 		</tr>
 		{% endfor %}
 	</table>
