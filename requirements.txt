@@ -14,6 +14,7 @@ MarkupSafe==1.1.0
 mccabe==0.6.1
 mypy==0.650
 mypy-extensions==0.4.1
+psycopg2==2.7.6.1
 pylint==2.2.2
 six==1.12.0
 SQLAlchemy==1.2.15
