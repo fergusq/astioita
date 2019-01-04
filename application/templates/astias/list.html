@@ -14,5 +14,9 @@
 		{% endfor %}
 	</table>
 
-	{% include "astias/form.html" %}
+	{% if current_user.is_authenticated %}
+		{% include "astias/form.html" %}
+	{% else %}
+		<p>Kirjaudu sisään lisätäksesi ASTIOITA.</p>
+	{% endif %}
 {% endblock %}

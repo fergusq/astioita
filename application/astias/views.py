@@ -19,7 +19,7 @@ def astias_edit(astia_id: str):
 	t: Astia = Astia.query.get(astia_id)
 	for column in ASTIA_COLUMNS:
 		if not column.validate(request.form):
-			return render_template("astias/list.html", astias=Astia.query.all()), 401
+			return render_template("astias/list.html", astias=Astia.query.all()), 400
 		column.set_from_form(t, request.form)
 	
 	db.session().commit()
@@ -38,7 +38,7 @@ def astias_create():
 	t.creator_id = current_user.id
 	for column in ASTIA_COLUMNS:
 		if not column.validate(request.form):
-			return render_template("astias/list.html", astias=Astia.query.all()), 401
+			return render_template("astias/list.html", astias=Astia.query.all()), 400
 		column.set_from_form(t, request.form)
 
 	db.session().add(t)
