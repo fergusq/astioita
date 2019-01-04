@@ -27,10 +27,6 @@ def astias_edit(astia_id: str):
 	t = Astia.query.get(astia_id)
 	return render_template("astias/show.html", astia=t)
 
-@app.route("/astiat/uusi")
-def astias_form():
-	return render_template("astias/new.html")
-
 @app.route("/astiat", methods=["POST"])
 @login_required
 def astias_create():

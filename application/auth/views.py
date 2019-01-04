@@ -1,8 +1,25 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
-from application import app
-from application.auth.models import User
+from application import app, db
+from application.auth.models import User, USER_COLUMNS
+
+@app.route("/tunnus/rekisteröityminen", methods=["GET"])
+def auth_new():
+	return render_template("auth/register.html")
+
+@app.route("/tunnus", methods=["POST"])
+def auth_create():
+	t = User()
+	for column in USER_COLUMNS:
+		if not column.validate(request.form):
+			return render_template("auth/loginerror.html", error = "Tunnus tai nimi eivät saa olal tyhjiä"), 400
+		column.set_from_form(t, request.form)
+
+	db.session().add(t)
+	db.session().commit()
+
+	return redirect(url_for("index"))
 
 @app.route("/tunnus/kirjautuminen", methods = ["POST"])
 def auth_login():
@@ -15,7 +32,7 @@ def auth_login():
 	return redirect(url_for("index"))
 
 
-@app.route("/auth/logout")
+@app.route("/tunnus/uloskirjautuminen")
 def auth_logout():
 	logout_user()
 	return redirect(url_for("index"))

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h2>Rekisteröidy</h2>
+
+<form action="{{ url_for('auth_create') }}" method="POST">
+	<input type="text" placeholder="nimi" name="nimi" pattern=".+" />
+	<input type="text" placeholder="tunnus" name="tunnus" pattern=".+" />
+	<input type="password" placeholder="salasana" name="salasana" />
+	<input type="submit" value="Kirjaudu" />
+</form>
+
+{% endblock %}

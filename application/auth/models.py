@@ -15,12 +15,10 @@ class User(db.Model):
 	username = sa.Column(sa.Text(), nullable=False)
 	password = sa.Column(sa.Text(), nullable=False)
 
-	created_astias = orm.relationship("Astia", backref="account", lazy=True)
+	created_astias = orm.relationship("Astia", backref="creator", lazy=True)
 
-	def __init__(self, name: str, username: str, password: str) -> None:
-		self.name = name
-		self.username = username
-		self.password = password
+	def __init__(self) -> None:
+		pass
 	
 	def get_id(self):
 		return self.id
