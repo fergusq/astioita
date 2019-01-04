@@ -30,4 +30,8 @@ import application.astias.views
 import application.auth.models
 import application.auth.views
 
+@login_manager.user_loader
+def load_user(user_id: int):
+    return application.auth.models.User.query.get(user_id)
+
 db.create_all()
