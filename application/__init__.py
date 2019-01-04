@@ -15,6 +15,8 @@ else:
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy(app)
 
+app.config["SECRET_KEY"] = os.urandom(32)
+
 from flask_login import LoginManager
 login_manager = LoginManager()
 login_manager.init_app(app)
