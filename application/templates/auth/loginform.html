@@ -1,0 +1,5 @@
+<form action="{{ url_for('auth_login') }}" method="POST">
+	<input type="text" placeholder="tunnus" name="tunnus" pattern=".+" />
+	<input type="password" placeholder="salasana" name="salasana" />
+	<input type="submit" value="Kirjaudu" />
+</form>

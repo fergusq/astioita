@@ -1,12 +1,12 @@
 {% if astia is defined %}
 <form action="{{ url_for('astias_edit', astia_id=astia.id) }}" method="POST">
-	<input type="text" name="otsikko" value="{{ astia.title|e }}" />
+	<input type="text" name="otsikko" pattern=".+" value="{{ astia.title|e }}" />
 	<textarea name="kuvaus">{{ astia.description|e }}</textarea>
 	<input type="submit" value="Tallenna" />
 </form>
 {% else %}
 <form action="{{ url_for('astias_create') }}" method="POST">
-	<input type="text" placeholder="otsikko" name="otsikko" />
+	<input type="text" placeholder="otsikko" name="otsikko" pattern=".+" />
 	<textarea name="kuvaus"></textarea>
 	<input type="submit" value="Luo" />
 </form>

@@ -14,6 +14,14 @@
 					<li><a href="/astiat">Astialista</a></li>
 				</ul>
 			</nav>
+			{% if current_user.is_authenticated %}
+			<p>
+				Kirjautunut: {{ current_user.name }}
+				<a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+			</p>
+			{% else %}
+				{% include "auth/loginform.html" %}
+			{% endif %}
 		</header>
 		
 		{% block body %}

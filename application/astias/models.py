@@ -1,19 +1,10 @@
+from typing import Optional
+
 from flask_sqlalchemy import sqlalchemy as sa
 from application import db
+from application.columns import Column, NonEmptyString
 
-class AstiaColumn:
-	def __init__(self, name_en: str, name_fi: str):
-		self.name_en = name_en
-		self.name_fi = name_fi
-	
-	def set_from_form(self, astia: "Astia", form):
-		str_rep = form.get(self.name_fi)
-		setattr(astia, self.name_en, str_rep)
-
-ASTIA_COLUMNS = [
-	AstiaColumn("title", "otsikko"),
-	AstiaColumn("description", "kuvaus"),
-]
+import re
 
 class Astia(db.Model):
 	id = sa.Column(sa.Integer, primary_key=True)
@@ -23,5 +14,12 @@ class Astia(db.Model):
 	title = sa.Column(sa.Text(), nullable=False)
 	description = sa.Column(sa.Text(), nullable=False)
 
-	def __init__(self):
+	creator_id = sa.Column(sa.Integer, sa.ForeignKey('account.id'), nullable=False)
+
+	def __init__(self) -> None:
 		pass
+
+ASTIA_COLUMNS = [
+	Column("title", "otsikko", NonEmptyString),
+	Column("description", "kuvaus", lambda _x: True),
+]
