@@ -1,6 +1,5 @@
 from flask_sqlalchemy import sqlalchemy as sa
 from sqlalchemy import orm
-from wtforms import StringField, PasswordField
 
 from application import db
 from application.columns import Column, NonEmptyString
