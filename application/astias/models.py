@@ -16,7 +16,9 @@ class Astia(db.Model):
 	title = sa.Column(sa.Text(), nullable=False)
 	description = sa.Column(sa.Text(), nullable=False)
 
-	creator_id = sa.Column(sa.Integer, sa.ForeignKey('account.id'), nullable=False)
+	creator_id = sa.Column(sa.Integer, sa.ForeignKey("account.id"), nullable=False)
+	assignee_id = sa.Column(sa.Integer, sa.ForeignKey("account.id"), nullable=True)
+	status_id = sa.Column(sa.Integer, sa.ForeignKey("status.id"), nullable=False, default=0)
 
 	def __init__(self) -> None:
 		pass

@@ -16,6 +16,7 @@ class User(db.Model):
 	password = sa.Column(sa.Text(), nullable=False)
 
 	created_astias = orm.relationship("Astia", backref="creator", lazy=True)
+	assigned_astias = orm.relationship("Astia", backref="assignee", lazy=True)
 
 	def __init__(self) -> None:
 		pass

@@ -29,6 +29,7 @@ import application.astias.models
 import application.astias.views
 import application.auth.models
 import application.auth.views
+import application.status.models
 
 @login_manager.user_loader
 def load_user(user_id: int):
