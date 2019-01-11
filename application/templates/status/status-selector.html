@@ -1,0 +1,7 @@
+{% macro selector(statuses, name='status', value=none) -%}
+<select name="{{name}}" autocomplete=off>
+    {% for status in statuses %}
+    <option value={{status.id}} {{ 'selected' if value == status.id }}>{{status.name}}</option>
+    {% endfor %}
+</select>
+{%- endmacro %}

@@ -3,8 +3,7 @@ from typing import Optional
 from flask_sqlalchemy import sqlalchemy as sa
 from sqlalchemy import orm
 from application import db
-from application.columns import Column, NonEmptyString
-from application.auth.models import User
+from application.columns import Column, NonEmptyString, Key
 
 import re
 
@@ -18,7 +17,7 @@ class Astia(db.Model):
 
 	creator_id = sa.Column(sa.Integer, sa.ForeignKey("account.id"), nullable=False)
 	assignee_id = sa.Column(sa.Integer, sa.ForeignKey("account.id"), nullable=True)
-	status_id = sa.Column(sa.Integer, sa.ForeignKey("status.id"), nullable=False, default=0)
+	status_id = sa.Column(sa.Integer, sa.ForeignKey("status.id"), nullable=False, default=1)
 
 	def __init__(self) -> None:
 		pass
@@ -26,4 +25,6 @@ class Astia(db.Model):
 ASTIA_COLUMNS = [
 	Column("title", "otsikko", NonEmptyString),
 	Column("description", "kuvaus", lambda _x: True),
+	Column("status_id", "status", Key, int),
+	Column("assignee_id", "vastuuhenkilö", Key, int),
 ]

@@ -1,0 +1,7 @@
+{% macro selector(users, name='käyttäjä', value=none) -%}
+<select name="{{name}}" autocomplete=off>
+    {% for user in users %}
+    <option value={{user.id}} {{ 'selected' if value == user.id }}>{{user.name}}</option>
+    {% endfor %}
+</select>
+{%- endmacro %}

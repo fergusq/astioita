@@ -1,7 +1,12 @@
+{% import 'status/status-selector.html' as status %}
+{% import 'auth/user-selector.html' as auth %}
+
 {% if astia is defined %}
 <form action="{{ url_for('astias_edit', astia_id=astia.id) }}" method="POST">
 	<input type="text" name="otsikko" pattern=".+" value="{{ astia.title|e }}" />
 	<textarea name="kuvaus">{{ astia.description|e }}</textarea>
+	{{ status.selector(statuses, value=astia.status.id) }}
+	{{ auth.selector(users, name='vastuuhenkilö', value=astia.assignee.id) }}
 	<input type="submit" value="Tallenna" />
 </form>
 {% else %}

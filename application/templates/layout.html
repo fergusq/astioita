@@ -3,27 +3,52 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>ASTIOITA</title>
+		<style>
+			header {
+				background-color: #77aaff;
+				color: white;
+				padding: 10px;
+			}
+			header > h1 {
+				margin: 0;
+			}
+			nav > ul {
+				list-style-type: none;
+    			padding-left: 0;
+			}
+			nav > ul > li {
+				display: inline-block;
+			}
+			nav > ul > li > form {
+				display: inline;
+			}
+			nav > ul > li.sep::after {
+				content: ' | '
+			}
+			h2 {
+				border-bottom: 1px solid black;
+			}
+		</style>
 	</head>
 
 	<body>
 		<header>
 			<h1>ASTIOITA</h1>
 			<em>Asiakkaan toiveiden ja ilmenneiden ongelmien ilmoitus- ja tarkkailualusta</em>
-			<nav>
-				<ul>
-					<li><a href="/astiat">Astialista</a></li>
-				</ul>
-			</nav>
-			{% if current_user.is_authenticated %}
-			<p>
-				Kirjautunut: {{ current_user.name }}
-				<a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
-			</p>
-			{% else %}
-				{% include "auth/loginform.html" %}
-				<p><a href="{{ url_for('auth_new') }}">Rekisteröidy</a></p>
-			{% endif %}
 		</header>
+		<nav>
+			<ul>
+				<li class="sep"><a href="/astiat">Astialista</a></li>
+				<li class="sep"><a href="/statukset">Statusten hallinta</a></li>
+				{% if current_user.is_authenticated %}
+				<li class="sep">Kirjautunut: {{ current_user.name }}</li>
+				<li><a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a></li>
+				{% else %}
+				<li class="sep"><a href="{{ url_for('auth_new') }}">Rekisteröidy</a></li>
+				<li>{% include "auth/loginform.html" %}</li>
+				{% endif %}
+			</ul>
+		</nav>
 		
 		{% block body %}
 		<p>

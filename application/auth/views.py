@@ -21,7 +21,7 @@ def auth_create():
 
 	return redirect(url_for("index"))
 
-@app.route("/tunnus/kirjautuminen", methods = ["POST"])
+@app.route("/tunnus/kirjautuminen", methods=["POST"])
 def auth_login():
 	user = User.query.filter_by(username=request.form["tunnus"], password=request.form["salasana"]).first()
 	if not user:
