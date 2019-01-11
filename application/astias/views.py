@@ -73,6 +73,8 @@ def astias_create():
 	t.creator_id = current_user.id
 	t.assignee_id = current_user.id
 	for column in ASTIA_COLUMNS:
+		if column.name_en not in request.form:
+			continue
 		if not column.validate(request.form):
 			return render_template("astias/list.html", astias=Astia.query.all(), statuses=Status.query.all(), users=User.query.all(), counts=User.find_astia_counts()), 400
 		column.set_from_form(t, request.form)
