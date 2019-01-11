@@ -2,7 +2,7 @@
 {% import 'auth/user-selector.html' as auth %}
 
 {% if astia is defined %}
-<form action="{{ url_for('astias_edit', astia_id=astia.id) }}" method="POST">
+<form action="{{ url_for('astias_edit', astia_id=astia.id) }}" method="POST" autocomplete="off">
 	<input type="text" name="otsikko" pattern=".+" value="{{ astia.title|e }}" />
 	<textarea name="kuvaus">{{ astia.description|e }}</textarea>
 	{{ status.selector(statuses, value=astia.status.id) }}
