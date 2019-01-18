@@ -15,6 +15,11 @@ def statuses_show(status_id: str):
 	t: Status = Status.query.get(status_id)
 	return render_template("status/show.html", status=t, statuses=Status.query.all())
 
+@app.route("/statukset/<status_id>/muokkaa", methods=["GET"])
+def statuses_edit(status_id: str):
+	t: Status = Status.query.get(status_id)
+	return render_template("status/edit.html", status=t, statuses=Status.query.all())
+
 @app.route("/statukset/<status_id>/", methods=["DELETE", "POST"]) # POST sisällytetty HTML-standardin puutteellisuuden vuoksi
 def statuses_delete(status_id: str):
 	t: Status = Status.query.get(status_id)

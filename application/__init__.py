@@ -35,6 +35,8 @@ import application.auth.models
 import application.auth.views
 import application.status.models
 import application.status.views
+import application.epic.models
+import application.epic.views
 
 
 @login_manager.user_loader

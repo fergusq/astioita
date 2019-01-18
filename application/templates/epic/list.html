@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <h2>Määritellyt kokonaisuudet</h2>
+
+    <ol>
+        {% for epic in epics %}
+        <li>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('epics_show', epic_id=epic.id) }}">{{ epic.name }}</a>
+            {% else %}
+            {{ epic.name }}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+
+    <h2>Uusi kokonaisuus</h2>
+
+    {% if current_user.is_authenticated %}
+        {% include "epic/form.html" %}
+    {% else %}
+        <p>Kirjaudu sisään lisätäksesi kokonaisuuksia.</p>
+    {% endif %}
+
+{% endblock %}

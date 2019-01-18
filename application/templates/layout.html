@@ -40,6 +40,7 @@
 			<ul>
 				<li class="sep"><a href="/astiat">Astialista</a></li>
 				<li class="sep"><a href="/statukset">Statusten hallinta</a></li>
+				<li class="sep"><a href="/kokonaisuudet">Kokonaisuuksien hallinta</a></li>
 				{% if current_user.is_authenticated %}
 				<li class="sep">Kirjautunut: {{ current_user.name }}</li>
 				<li><a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a></li>

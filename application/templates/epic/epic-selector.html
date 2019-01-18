@@ -1,0 +1,7 @@
+{% macro selector(epics, name='epic', values=none) -%}
+<select name="{{name}}" autocomplete=off multiple>
+    {% for epic in epics %}
+    <option value={{epic.id}}>{{epic.name}}</option>
+    {% endfor %}
+</select>
+{%- endmacro %}

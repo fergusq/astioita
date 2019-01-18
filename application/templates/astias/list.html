@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 
+{% import 'epic/epic-selector.html' as epic %}
 {% import 'status/status-selector.html' as status %}
 {% import 'auth/user-selector.html' as auth %}
 
@@ -11,7 +12,8 @@
 			<th>Kuvaus</th>
 			<th>Luoja</th>
 			<th>Vastuuhenkilö</th>
-			<th>Status</th>	
+			<th>Status</th>
+			<th>Kokonaisuudet</th>
 		</tr>
 		{% for astia in astias %}
 		<tr>
@@ -42,6 +44,19 @@
 				</form>
 				{% else %}
 				{{ astia.status.name }}
+				{% endif %}
+			</td>
+			<td>
+				<ul>
+					{% for epic in astia.epics %}
+					<li>{{epic.name}}</li>
+					{% endfor %}
+				</ul>
+				{% if current_user.is_authenticated %}
+				<form action="{{ url_for('astias_set_epics', astia_id=astia.id) }}" method="POST">
+					{{ epic.selector(epics, name='kokonaisuus', values=astia.epics) }}
+					<input type="submit" value="Tallenna kokonaisuudet" />
+				</form>
 				{% endif %}
 			</td>
 		</tr>

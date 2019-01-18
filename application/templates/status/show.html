@@ -2,10 +2,8 @@
 
 {% block body %}
 
-	{% include "status/form.html" %}
+	<p><b>Nimi:</b> {{ status.name|e }}</p>
 
-	<form action="{{ url_for('statuses_delete', status_id=status.id) }}" method="POST">
-		<input type="submit" value="Poista status" />
-	</form>
+	<a href="{{ url_for('statuses_edit', status_id=status.id) }}">Muokkaa</a>
 
 {% endblock %}
