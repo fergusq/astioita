@@ -16,20 +16,20 @@ def statuses_show(status_id: str):
 	return render_template("status/show.html", status=t, statuses=Status.query.all())
 
 @app.route("/statukset/<status_id>/muokkaa", methods=["GET"])
-def statuses_edit(status_id: str):
+def statuses_edit_form(status_id: str):
 	t: Status = Status.query.get(status_id)
 	return render_template("status/edit.html", status=t, statuses=Status.query.all())
 
-@app.route("/statukset/<status_id>/", methods=["DELETE", "POST"]) # POST sisällytetty HTML-standardin puutteellisuuden vuoksi
+@app.route("/statukset/<status_id>/poista", methods=["DELETE", "POST"]) # POST sisällytetty HTML-standardin puutteellisuuden vuoksi
 def statuses_delete(status_id: str):
 	t: Status = Status.query.get(status_id)
 	db.session().delete(t)
 	db.session().commit()
 	return render_template("status/list.html", statuses=Status.query.all()), 400
 
-@app.route("/statukset/<status_id>/poista", methods=["PUT", "POST"]) # POST sisällytetty HTML-standardin puutteellisuuden vuoksi
+@app.route("/statukset/<status_id>", methods=["PUT", "POST"]) # POST sisällytetty HTML-standardin puutteellisuuden vuoksi
 @login_required
-def statuses_delete(status_id: str):
+def statuses_edit(status_id: str):
 	t: Status = Status.query.get(status_id)
 	for column in STATUS_COLUMNS:
 		if not column.validate(request.form):

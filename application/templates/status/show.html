@@ -4,6 +4,6 @@
 
 	<p><b>Nimi:</b> {{ status.name|e }}</p>
 
-	<a href="{{ url_for('statuses_edit', status_id=status.id) }}">Muokkaa</a>
+	<a href="{{ url_for('statuses_edit_form', status_id=status.id) }}">Muokkaa</a>
 
 {% endblock %}
