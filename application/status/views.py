@@ -29,7 +29,7 @@ def statuses_delete(status_id: str):
 
 @app.route("/statukset/<status_id>/poista", methods=["PUT", "POST"]) # POST sisällytetty HTML-standardin puutteellisuuden vuoksi
 @login_required
-def statuses_edit(status_id: str):
+def statuses_delete(status_id: str):
 	t: Status = Status.query.get(status_id)
 	for column in STATUS_COLUMNS:
 		if not column.validate(request.form):
